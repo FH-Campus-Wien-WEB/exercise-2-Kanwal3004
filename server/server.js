@@ -38,6 +38,19 @@ app.get('/movies/:imdbID', function (req, res) {
    - Check whether the movie sent by the client already exists 
      and continue as described in the assignment */
 
+app.put('/movies/:imdbID', function (req, res) {
+  const imdbID = req.params.imdbID;
+  const movie = req.body;
+
+  if (movieModel[imdbID]) {
+    movieModel[imdbID] = movie;
+    res.sendStatus(200);
+  } else {
+    movieModel[imdbID] = movie;
+    res.status(201).json(movie);
+  }
+});
+
 app.listen(3000)
 
 console.log("Server now listening on http://localhost:3000/")
