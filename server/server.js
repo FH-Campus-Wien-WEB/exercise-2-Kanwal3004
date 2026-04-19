@@ -22,7 +22,15 @@ app.get('/movies', function (req, res) {
 app.get('/movies/:imdbID', function (req, res) {
   /* Task 2.1. Remove the line below and add the 
     functionality here */
-  res.sendStatus(404)
+    const imdbID = req.params.imdbID;
+
+    const movie = movieModel[imdbID];
+
+    if (movie) {
+      res.json(movie);
+    } else {
+      res.sendStatus(404);
+  }
 })
 
 /* Task 3.1 and 3.2.
